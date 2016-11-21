@@ -16,7 +16,7 @@ public class ConcertBooking
         ConcertUI myUI = new ConcertUI();
         myUI.setVisible(true);
         
-        //Boats and hoes
+        //Git commit
     }
     
 }
