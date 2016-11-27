@@ -3,7 +3,7 @@ package concertbooking;
 
 /**
  *
- * @author B00663255
+ * @authors Patrick Crossan B00663255 Ciaran Jordan B00
  */
 public class ConcertBooking
 {
@@ -15,8 +15,6 @@ public class ConcertBooking
     {
         ConcertUI myUI = new ConcertUI();
         myUI.setVisible(true);
-        
-        //Boats and hoes
     }
     
 }
