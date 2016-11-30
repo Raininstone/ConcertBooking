@@ -22,7 +22,7 @@ public class ConcertBooking
             /* Just used this for testing to check data was being read in
             properly.
             */
-            /**for(int i = 0; i < bookings.length; i++)
+            /*for(int i = 0; i < bookings.length; i++)
             {
                 System.out.println(bookings[i]);
             }*/

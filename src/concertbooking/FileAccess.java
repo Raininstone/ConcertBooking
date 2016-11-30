@@ -46,9 +46,9 @@ public class FileAccess
         arraySize++;
     }
     
-    public void printToConcertDetails(String concert,String concertDate)
+    public void printToConcertDetails(String concert,String concertDate,double goldPrice,double silverPrice,double bronzePrice)
     {
-        String concertInfo = concert+" "+concertDate;
+        String concertInfo = concert+" "+concertDate+" "+goldPrice+" "+silverPrice+" "+bronzePrice;
         try 
         {
             out = new PrintWriter("ConcertDetails.txt");
