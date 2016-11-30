@@ -11,7 +11,10 @@ public class ConcertUI extends javax.swing.JFrame
     private String name;
     private String seat;
     private String concert;
-    private String concertDate; 
+    private String concertDate;
+    private double goldPrice;
+    private double silverPrice;
+    private double bronzePrice;
     /**
      * Creates new form ConcertUI
      */
@@ -782,7 +785,6 @@ public class ConcertUI extends javax.swing.JFrame
     private void buttonClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClick
         name = JOptionPane.showInputDialog("Please enter your name");
         seat = JOptionPane.showInputDialog("Please enter your Seat");
-        concert = JOptionPane.showInputDialog("Please enter the concert name");
         myAccessor.printToBookings(name,seat);
     }//GEN-LAST:event_buttonClick
     
@@ -794,7 +796,10 @@ public class ConcertUI extends javax.swing.JFrame
     private void concertClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_concertClick
         concert = JOptionPane.showInputDialog("What is this concert called?");
         concertDate = JOptionPane.showInputDialog("What is the date of the concert?");
-        myAccessor.printToConcertDetails(concert,concertDate);
+        goldPrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the gold seat price:"));
+        silverPrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the silver seat price:"));
+        bronzePrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the bronze seat price:"));
+        myAccessor.printToConcertDetails(concert,concertDate,goldPrice,silverPrice,bronzePrice);
     }//GEN-LAST:event_concertClick
 
     /**
