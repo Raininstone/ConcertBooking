@@ -7,17 +7,29 @@ import java.io.PrintWriter;
 
 /**
  *
- * @authors Patrick Crossan B00663255 Ciaran Jordan B00
+ * @authors Patrick Crossan B00663255 Ciaran Jordan B00663523
  */
 public class FileAccess
 {
-    private final String[] myBookings = new String[90];
+    /*Changed name of array to bookings, keep it general
+    Also need to find a way to use single array for storing bookings across 
+    multiple classes.
+    */
+    private final String[] bookings = new String[90];
+    /*Need to change arraySize to accomodate for the data that already
+    exists in and will be loaded from the text file. 
+    */
     private int arraySize = 0;
     private PrintWriter out = null;
+    private String path;
     
-    public void printToBookings(String name,String seat,String concert)
+    /*Removed concert given only 1 concert needs to exist at any given
+    time, so any booking is associated with that concert. No need for 
+    specifying.
+    */
+    public void printToBookings(String name,String seat)
     {
-        myBookings[arraySize] = name+" "+seat+" "+concert;
+        bookings[arraySize] = name+" "+seat;
         try 
         {
             FileWriter myWriter = new FileWriter("Bookings.txt",true);
@@ -28,7 +40,7 @@ public class FileAccess
             System.out.println(error.getMessage()); 
         } 
         
-        out.println(myBookings[arraySize]);
+        out.println(bookings[arraySize]);
         System.out.println("Booking added to file");
         out.close();
         arraySize++;

@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @authors Patrick Crossan B00663255 Ciaran Jordan B00
+ * @authors Patrick Crossan B00663255 Ciaran Jordan B00663523
  */
 public class ConcertUI extends javax.swing.JFrame
 {
@@ -783,7 +783,7 @@ public class ConcertUI extends javax.swing.JFrame
         name = JOptionPane.showInputDialog("Please enter your name");
         seat = JOptionPane.showInputDialog("Please enter your Seat");
         concert = JOptionPane.showInputDialog("Please enter the concert name");
-        myAccessor.printToBookings(name,seat,concert);
+        myAccessor.printToBookings(name,seat);
     }//GEN-LAST:event_buttonClick
     
     /*This method allows the admin to create a new concert and store
