@@ -124,7 +124,6 @@ public class ConcertUI extends javax.swing.JFrame
         bI3 = new javax.swing.JButton();
         bI2 = new javax.swing.JButton();
         bI1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         column10 = new javax.swing.JLabel();
         column9 = new javax.swing.JLabel();
         column8 = new javax.swing.JLabel();
@@ -148,6 +147,9 @@ public class ConcertUI extends javax.swing.JFrame
         fireExit1 = new javax.swing.JLabel();
         fireExit2 = new javax.swing.JLabel();
         mainEntrance = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        newConcert = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -428,13 +430,6 @@ public class ConcertUI extends javax.swing.JFrame
 
         bI1.setBackground(new java.awt.Color(153, 102, 0));
         bI1.setForeground(new java.awt.Color(204, 204, 204));
-
-        jButton1.setText("New Concert");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                concertClick(evt);
-            }
-        });
 
         column10.setText("10");
 
@@ -759,13 +754,9 @@ public class ConcertUI extends javax.swing.JFrame
                         .addGap(466, 466, 466)
                         .addComponent(stage))
                     .addGroup(concertPanelLayout.createSequentialGroup()
-                        .addGap(448, 448, 448)
+                        .addGap(449, 449, 449)
                         .addComponent(mainEntrance)))
                 .addContainerGap(124, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, concertPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(427, 427, 427))
         );
         concertPanelLayout.setVerticalGroup(
             concertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -937,12 +928,24 @@ public class ConcertUI extends javax.swing.JFrame
                             .addComponent(bI8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bI7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bI6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addGap(9, 9, 9)
+                .addGap(18, 18, 18)
                 .addComponent(mainEntrance)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
+
+        jMenu1.setText("File");
+
+        newConcert.setText("New Concert");
+        newConcert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newConcertActionPerformed(evt);
+            }
+        });
+        jMenu1.add(newConcert);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -966,15 +969,15 @@ public class ConcertUI extends javax.swing.JFrame
     {
         super.paint(g);
         g.setColor(Color.blue);
-        g.drawLine(50,80,125,80);
-        g.drawLine(200,80,350,80);
-        g.drawLine(350,80,350,125);
-        g.drawLine(350,125,625,125);
-        g.drawLine(625,125,625,80);
-        g.drawLine(625,80,780,80);
-        g.drawLine(850,80,925,80);
-        g.drawLine(50,717,445,717);
-        g.drawLine(550,717,925,717);
+        g.drawLine(50,100,125,100);
+        g.drawLine(200,100,350,100);
+        g.drawLine(350,100,350,145);
+        g.drawLine(350,145,625,145);
+        g.drawLine(625,145,625,100);
+        g.drawLine(625,100,780,100);
+        g.drawLine(850,100,925,100);
+        g.drawLine(50,710,445,710);
+        g.drawLine(550,710,925,710);
     }
     /*Clicking the button allows the user to enter booking details
     to an array and print them to the "Bookings.txt" file using the
@@ -987,19 +990,18 @@ public class ConcertUI extends javax.swing.JFrame
         myAccessor.printToBookings(name,seat);
     }//GEN-LAST:event_buttonClick
     
-    /*This method allows the admin to create a new concert and store
-    the details in the "ConcertDetails.txt" file. Every time a new concert is
-    created the last one is deleted from the file i.e. it only stores the
-    current concert.
+    /* Clicking the "New Concert" menu item allows the user to enter info about
+    a new concert and store them in the "ConcertDetails.txt" file. Only the last
+    concert to be entered is stored.
     */
-    private void concertClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_concertClick
+    private void newConcertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newConcertActionPerformed
         concert = JOptionPane.showInputDialog("What is this concert called?");
         concertDate = JOptionPane.showInputDialog("What is the date of the concert?");
         goldPrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the gold seat price:"));
         silverPrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the silver seat price:"));
         bronzePrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the bronze seat price:"));
         myAccessor.printToConcertDetails(concert,concertDate,goldPrice,silverPrice,bronzePrice);
-    }//GEN-LAST:event_concertClick
+    }//GEN-LAST:event_newConcertActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1110,8 +1112,10 @@ public class ConcertUI extends javax.swing.JFrame
     private javax.swing.JButton gC7;
     private javax.swing.JButton gC8;
     private javax.swing.JButton gC9;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel mainEntrance;
+    private javax.swing.JMenuItem newConcert;
     private javax.swing.JLabel rowA;
     private javax.swing.JLabel rowB;
     private javax.swing.JLabel rowC;
