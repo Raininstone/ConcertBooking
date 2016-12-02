@@ -986,6 +986,10 @@ public class ConcertUI extends javax.swing.JFrame
     FileAccess myAccessor = new FileAccess();
     private void buttonClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClick
         name = JOptionPane.showInputDialog("Please enter your name");
+        while(name.length() > 30)
+        {
+            name = JOptionPane.showInputDialog("Please enter a name with less than 30 characters");
+        }
         seat = JOptionPane.showInputDialog("Please enter your Seat");
         myAccessor.printToBookings(name,seat);
     }//GEN-LAST:event_buttonClick
