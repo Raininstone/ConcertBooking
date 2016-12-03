@@ -733,15 +733,23 @@ public class ConcertUI extends javax.swing.JFrame
     {
         @Override
         public void actionPerformed(ActionEvent e)
-        {
-            storeCustomerDetails();
-            
+        {           
             JButton source = (JButton)e.getSource();
             if(source.getBackground() == Color.RED)
             {
-                source.setBackground(Color.decode("#FFD700"));
+                String unbookSeat = JOptionPane.showInputDialog("Do you want to unbook this seat?");
+                if(unbookSeat == "yes")
+                {
+                    source.setBackground(Color.decode("#FFD700"));   
+                }
             }else
             {
+                int randomNumber = (int) (Math.random() * 10 + 1);
+                if(randomNumber == 5)
+                {
+                    JOptionPane.showMessageDialog (null, "You've got a backstage pass", "Backstage Pass", JOptionPane.INFORMATION_MESSAGE);
+                }
+                storeCustomerDetails();
                 source.setBackground(Color.RED);
             }
         }
@@ -751,15 +759,15 @@ public class ConcertUI extends javax.swing.JFrame
     {
         @Override
         public void actionPerformed(ActionEvent e)
-        {
-            storeCustomerDetails();
-            
+        {          
             JButton source = (JButton)e.getSource();
             if(source.getBackground() == Color.RED)
             {
                 source.setBackground(Color.decode("#C0C0C0"));
             }else
             {
+                storeCustomerDetails();
+                JOptionPane.showMessageDialog (null, "You are Entitled to a free programme", "Free Programme", JOptionPane.INFORMATION_MESSAGE);
                 source.setBackground(Color.RED);
             }
         }
@@ -769,15 +777,15 @@ public class ConcertUI extends javax.swing.JFrame
     {
         @Override
         public void actionPerformed(ActionEvent e)
-        {
-            storeCustomerDetails();
-            
+        {           
             JButton source = (JButton)e.getSource();
             if(source.getBackground() == Color.RED)
             {
-                source.setBackground(Color.decode("#D2691E"));
+                JOptionPane.showMessageDialog (null, "Bronze seats cannot be unbooked", "Already Booked", JOptionPane.INFORMATION_MESSAGE);
+                //source.setBackground(Color.decode("#D2691E"));
             }else
             {
+                storeCustomerDetails();
                 source.setBackground(Color.RED);
             }
         }
