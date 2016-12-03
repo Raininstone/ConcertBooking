@@ -27,6 +27,19 @@ public class FileAccess
     time, so any booking is associated with that concert. No need for 
     specifying.
     */
+    
+    //This method returns the amount of booked seats
+    public int bookedCount()
+    {
+        return arraySize;
+    }
+    
+    //This method returns the amount of unbooked seats
+    public int unbookedCount()
+    {
+        return 90 - arraySize;
+    }
+    
     public void printToBookings(String name,String seat)
     {
         bookings[arraySize] = name+" "+seat;

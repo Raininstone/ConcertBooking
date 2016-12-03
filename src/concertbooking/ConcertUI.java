@@ -47,6 +47,7 @@ public class ConcertUI extends javax.swing.JFrame
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem newConcert = new JMenuItem("New Concert");
+        JMenuItem showReport = new JMenuItem("Show Report");
         
         JButton[] buttons = new JButton[90];
         for(int i = 0; i < 30; i++)
@@ -89,7 +90,9 @@ public class ConcertUI extends javax.swing.JFrame
         }
         
         newConcert.addActionListener(new newConcertListener());
+        showReport.addActionListener(new showReportListener());
         fileMenu.add(newConcert);
+        fileMenu.add(showReport);
         menuBar.add(fileMenu);
         setJMenuBar(menuBar);
         
@@ -805,6 +808,21 @@ public class ConcertUI extends javax.swing.JFrame
             Double bronzePrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the bronze seat price:"));
             fileAccessor.printToConcertDetails(concert,concertDate,goldPrice,silverPrice,bronzePrice);
         }
+    }
+    
+    private class showReportListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+            FileAccess fileAccessor = new FileAccess();
+            
+            int bookedAmount = fileAccessor.bookedCount();
+            int unbookedAmount = fileAccessor.unbookedCount();
+            JOptionPane.showMessageDialog(null,"There are "+bookedAmount+" seats booked for this concert");
+            JOptionPane.showMessageDialog(null,"There are "+unbookedAmount+" seats Available for this concert");
+        }
+        
     }
     
     private void storeCustomerDetails()
