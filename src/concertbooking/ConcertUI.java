@@ -19,7 +19,16 @@ import javax.swing.LayoutStyle;
  * @author Ciaran Jordan B00663523 Patrick Crossan B00663255
  */
 public class ConcertUI extends javax.swing.JFrame
-{
+{ 
+    private double totalPrice;
+    private double goldPrice;
+    private double silverPrice;
+    private double bronzePrice;
+    private int goldCounter = 0;
+    private int silverCounter = 0;
+    private int bronzeCounter = 0;
+    FileAccess fileAccessor = new FileAccess();
+    
     public ConcertUI()
     {
         JPanel goldPanelSet1 = new JPanel();
@@ -753,6 +762,7 @@ public class ConcertUI extends javax.swing.JFrame
                     JOptionPane.showMessageDialog (null, "You've got a backstage pass", "Backstage Pass", JOptionPane.INFORMATION_MESSAGE);
                 }
                 storeCustomerDetails();
+                goldCounter++;
                 source.setBackground(Color.RED);
             }
         }
@@ -771,6 +781,7 @@ public class ConcertUI extends javax.swing.JFrame
             {
                 storeCustomerDetails();
                 JOptionPane.showMessageDialog (null, "You are Entitled to a free programme", "Free Programme", JOptionPane.INFORMATION_MESSAGE);
+                silverCounter++;
                 source.setBackground(Color.RED);
             }
         }
@@ -789,6 +800,7 @@ public class ConcertUI extends javax.swing.JFrame
             }else
             {
                 storeCustomerDetails();
+                bronzeCounter++;
                 source.setBackground(Color.RED);
             }
         }
@@ -799,35 +811,35 @@ public class ConcertUI extends javax.swing.JFrame
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            FileAccess fileAccessor = new FileAccess();
+            //FileAccess fileAccessor = new FileAccess();
             
             String concert = JOptionPane.showInputDialog("What is this concert called?");
             String concertDate = JOptionPane.showInputDialog("What is the date of the concert?");
-            Double goldPrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the gold seat price:"));
-            Double silverPrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the silver seat price:"));
-            Double bronzePrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the bronze seat price:"));
+            goldPrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the gold seat price:"));
+            silverPrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the silver seat price:"));
+            bronzePrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the bronze seat price:"));
             fileAccessor.printToConcertDetails(concert,concertDate,goldPrice,silverPrice,bronzePrice);
         }
     }
-    
+
     private class showReportListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent ae)
         {
-            FileAccess fileAccessor = new FileAccess();
-            
             int bookedAmount = fileAccessor.bookedCount();
             int unbookedAmount = fileAccessor.unbookedCount();
             JOptionPane.showMessageDialog(null,"There are "+bookedAmount+" seats booked for this concert");
             JOptionPane.showMessageDialog(null,"There are "+unbookedAmount+" seats Available for this concert");
+            totalPrice = ((goldPrice*goldCounter)+(silverPrice*silverCounter)+(bronzePrice*bronzeCounter));
+            JOptionPane.showMessageDialog(null,"The total value of sales for this concert is £"+totalPrice);
         }
         
     }
     
     private void storeCustomerDetails()
     {
-        FileAccess fileAccessor = new FileAccess();
+        //FileAccess fileAccessor = new FileAccess();
         
         String name = JOptionPane.showInputDialog("Please enter your name");
         while(name.length() > 30)
