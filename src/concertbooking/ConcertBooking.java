@@ -42,7 +42,10 @@ public class ConcertBooking
             System.out.println(e.getMessage());
         }
         
-        ConcertUI myUI = new ConcertUI();
-        myUI.setVisible(true);
+        ConcertUI concertHall = new ConcertUI();
+        concertHall.setTitle("Button Array Test");
+        concertHall.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        concertHall.pack();
+        concertHall.setVisible(true);
     }
 }
