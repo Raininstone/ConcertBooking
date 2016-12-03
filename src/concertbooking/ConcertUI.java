@@ -749,11 +749,7 @@ public class ConcertUI extends javax.swing.JFrame
             JButton source = (JButton)e.getSource();
             if(source.getBackground() == Color.RED)
             {
-                String unbookSeat = JOptionPane.showInputDialog("Do you want to unbook this seat?");
-                if(unbookSeat == "yes")
-                {
-                    source.setBackground(Color.decode("#FFD700"));   
-                }
+                source.setBackground(Color.decode("#FFD700"));   
             }else
             {
                 int randomNumber = (int) (Math.random() * 10 + 1);
@@ -811,7 +807,10 @@ public class ConcertUI extends javax.swing.JFrame
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            //FileAccess fileAccessor = new FileAccess();
+            totalPrice = 0;
+            goldCounter = 0;
+            silverCounter = 0;
+            bronzeCounter = 0;
             
             String concert = JOptionPane.showInputDialog("What is this concert called?");
             String concertDate = JOptionPane.showInputDialog("What is the date of the concert?");
@@ -839,8 +838,6 @@ public class ConcertUI extends javax.swing.JFrame
     
     private void storeCustomerDetails()
     {
-        //FileAccess fileAccessor = new FileAccess();
-        
         String name = JOptionPane.showInputDialog("Please enter your name");
         while(name.length() > 30)
         {
