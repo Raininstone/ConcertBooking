@@ -57,6 +57,8 @@ public class ConcertUI extends javax.swing.JFrame
         JMenu fileMenu = new JMenu("File");
         JMenuItem newConcert = new JMenuItem("New Concert");
         JMenuItem showReport = new JMenuItem("Show Report");
+        JMenuItem querySeatPurchaser = new JMenuItem("Query Seat Purchaser");
+        JMenuItem querySeatStatus = new JMenuItem("Query Seat Status");
         
         JButton[] buttons = new JButton[90];
         for(int i = 0; i < 30; i++)
@@ -100,8 +102,12 @@ public class ConcertUI extends javax.swing.JFrame
         
         newConcert.addActionListener(new newConcertListener());
         showReport.addActionListener(new showReportListener());
+        querySeatPurchaser.addActionListener(new querySeatPurchaserListener());
+        querySeatStatus.addActionListener(new querySeatStatusListener());
         fileMenu.add(newConcert);
         fileMenu.add(showReport);
+        fileMenu.add(querySeatPurchaser);
+        fileMenu.add(querySeatStatus);
         menuBar.add(fileMenu);
         setJMenuBar(menuBar);
         
@@ -818,6 +824,28 @@ public class ConcertUI extends javax.swing.JFrame
             silverPrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the silver seat price:"));
             bronzePrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the bronze seat price:"));
             fileAccessor.printToConcertDetails(concert,concertDate,goldPrice,silverPrice,bronzePrice);
+        }
+    }
+    
+    // Enter a seat to find info about its purchaser
+    private class querySeatStatusListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+            //Doesn't do anything yet
+        }
+    }
+    
+    //Enter a purchasers name to get info about the seat they've booked
+    private class querySeatPurchaserListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+            //Doesn't do anything yet
         }
     }
 
