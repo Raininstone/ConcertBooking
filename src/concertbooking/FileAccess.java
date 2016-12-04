@@ -15,7 +15,7 @@ public class FileAccess
     Also need to find a way to use single array for storing bookings across 
     multiple classes.
     */
-    private final String[] bookings = new String[90];
+    private String[] bookings = new String[90];
     /*Need to change arraySize to accomodate for the data that already
     exists in and will be loaded from the text file. 
     */
@@ -38,6 +38,22 @@ public class FileAccess
     public int unbookedCount()
     {
         return 90 - arraySize;
+    }
+    
+    public void continueTransfer(String[] readArray)
+    {
+        //define a new array + allocate space
+        bookings = new String[readArray.length];
+ 
+        //copy values
+        for(int i =0;i < readArray.length;i++)
+        {
+            bookings[i] = readArray[i];
+            if(bookings[i] != null)
+            {
+                arraySize++;
+            }
+        }
     }
     
     public void printToBookings(String name,String seat)

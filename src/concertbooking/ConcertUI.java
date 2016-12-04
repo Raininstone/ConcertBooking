@@ -874,4 +874,16 @@ public class ConcertUI extends javax.swing.JFrame
         String seat = JOptionPane.showInputDialog("Please enter your Seat");
         fileAccessor.printToBookings(name,seat);
     }
+    
+    public void transferArray(String[] readArray)
+    {
+        //define a new array + allocate space
+        String[] newArray = new String[readArray.length];
+ 
+        //copy values
+        for(int i =0;i < readArray.length;i++)
+            newArray[i] = readArray[i];
+        
+        fileAccessor.continueTransfer(newArray);
+    }
 }
