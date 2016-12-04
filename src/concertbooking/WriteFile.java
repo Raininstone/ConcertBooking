@@ -12,6 +12,8 @@ import java.util.Arrays;
  */
 public class WriteFile
 {
+    /*Adding temp change to get this to commit
+        */
     /*Changed name of array to bookings, keep it general
     Also need to find a way to use single array for storing bookings across 
     multiple classes.

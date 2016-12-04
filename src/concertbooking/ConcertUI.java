@@ -23,6 +23,8 @@ import javax.swing.LayoutStyle;
  */
 public class ConcertUI extends javax.swing.JFrame
 { 
+    /*Adding temp change to get this to commit
+        */
     private double totalPrice;
     private double goldPrice;
     private double silverPrice;
