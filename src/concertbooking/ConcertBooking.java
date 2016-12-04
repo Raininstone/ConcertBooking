@@ -8,8 +8,6 @@ import java.io.IOException;
  */
 public class ConcertBooking
 {
-    static String[] bookings = new String[90];
-    
     /**
      * @param args the command line arguments
      * @throws java.io.IOException
@@ -19,19 +17,19 @@ public class ConcertBooking
     {
         try
         {
-            ReadFile bookingsFile = new ReadBookings("Bookings.txt");
-            String [] currentBookings = bookingsFile.openFile();
-            for(int i = 0; i < currentBookings.length; i++)
-            {
-                bookings[i] = currentBookings[i];
-            }
+            ReadFile bookingsFile = new ReadFile("Bookings.txt");
+            String [] bookings = bookingsFile.OpenFile();
+            ConcertUI concertHall = new ConcertUI();
             /*THIS WILL CAUSE AN EXCEPTION ERROR WHEN ADDING A BOOKING NOT SURE
             * HOW TO FIX IT YET
             /if(bookings.length != 0);
             {
                 concertHall.transferArray(bookings);
             }*/
-            
+            concertHall.setTitle("Button Array Test");
+            concertHall.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+            concertHall.pack();
+            concertHall.setVisible(true);
             /* Just used this for testing to check data was being read in
             properly.
             */
@@ -46,19 +44,13 @@ public class ConcertBooking
         
         try
         {
-            ReadFile concertFile = new ReadConcert("ConcertDetails.txt");
-            String[] concertDetails = concertFile.openFile();
+            ReadFile concertFile = new ReadFile("ConcertDetails.txt");
+            String[] concertDetails = concertFile.OpenFile();
             //Just testing again
             //System.out.println(concertDetails[0]);
         }catch(IOException e)
         {
             System.out.println(e.getMessage());
         }
-        
-        ConcertUI concertHall = new ConcertUI();
-        concertHall.setTitle("Button Array Test");
-        concertHall.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        concertHall.pack();
-        concertHall.setVisible(true);
     }
 }

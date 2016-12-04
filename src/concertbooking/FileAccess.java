@@ -10,7 +10,7 @@ import java.util.Arrays;
  *
  * @authors Patrick Crossan B00663255 Ciaran Jordan B00663523
  */
-public class WriteFile
+public class FileAccess
 {
     /*Changed name of array to bookings, keep it general
     Also need to find a way to use single array for storing bookings across 

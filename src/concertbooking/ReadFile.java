@@ -8,9 +8,9 @@ import java.io.IOException;
  *
  * @author Ciaran Jordan B00663523 Patrick Crossan B00663255
  */
-public abstract class ReadFile 
+public class ReadFile 
 {
-    protected final String path;
+    private final String path;
     
     //Constructor containg pathway for file being accessed
     public ReadFile(String filePath)
@@ -18,12 +18,44 @@ public abstract class ReadFile
         path = filePath;
     }
 
-    //Abstract class for opening files
-    abstract String[] openFile() 
-        throws IOException;
+    //Access the file and read in data
+    public String[] OpenFile() 
+        throws IOException
+    {
+        FileReader reader =  new FileReader(path);
+        BufferedReader textReader = new BufferedReader(reader);
+        
+        int numOfLines = numLines();
+        /*If amount of data is greater than 1 then it must contain
+        customer details as the concert file will only store one concert
+        at a time.
+        */
+        if(numOfLines > 1)
+        {
+            String[] bookings = new String[90];
+            for(int i = 0; i < numOfLines; i++)
+            {
+                bookings[i] = textReader.readLine();
+            }
+            
+            //Close file after access
+            textReader.close();
+            return bookings;
+        }else
+        {
+            /*String of size 1, not sure how to convert to an Array to String
+            so just done this. Might change.
+            */
+            String[] concertDetails = new String[1];
+            concertDetails[0] = textReader.readLine(); 
+            
+            textReader.close();
+            return concertDetails;
+        }
+    }
     
     //Count the number of data items in the file
-    protected int numLines()
+    private int numLines()
             throws IOException
     {
         FileReader reader = new FileReader(path);
