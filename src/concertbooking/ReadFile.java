@@ -10,6 +10,8 @@ import java.io.IOException;
  */
 public abstract class ReadFile 
 {
+    /*Adding temp change to get this to commit
+        */
     protected final String path;
     
     //Constructor containg pathway for file being accessed
