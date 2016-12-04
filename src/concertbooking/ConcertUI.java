@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -817,7 +820,12 @@ public class ConcertUI extends javax.swing.JFrame
             goldCounter = 0;
             silverCounter = 0;
             bronzeCounter = 0;
-            
+            fileAccessor.resetArray();
+            try {
+                fileAccessor.clearFile();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ConcertUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
             String concert = JOptionPane.showInputDialog("What is this concert called?");
             String concertDate = JOptionPane.showInputDialog("What is the date of the concert?");
             goldPrice = Double.parseDouble((String)JOptionPane.showInputDialog("Please enter the gold seat price:"));

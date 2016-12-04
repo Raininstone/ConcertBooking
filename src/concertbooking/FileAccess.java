@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 /**
  *
@@ -38,6 +39,18 @@ public class FileAccess
     public int unbookedCount()
     {
         return 90 - arraySize;
+    }
+    
+    public void resetArray()
+    {
+        arraySize = 0;
+        Arrays.fill(bookings, null);
+    }
+    
+    public void clearFile() throws FileNotFoundException
+    {
+        PrintWriter printer = new PrintWriter("Bookings.txt");
+        printer.close();
     }
     
     public void continueTransfer(String[] readArray)
