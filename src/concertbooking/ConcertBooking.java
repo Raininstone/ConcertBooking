@@ -20,7 +20,9 @@ public class ConcertBooking
             ReadFile bookingsFile = new ReadFile("Bookings.txt");
             String [] bookings = bookingsFile.OpenFile();
             ConcertUI concertHall = new ConcertUI();
-            /*if(bookings.length != 0);
+            /*THIS WILL CAUSE AN EXCEPTION ERROR WHEN ADDING A BOOKING NOT SURE
+            * HOW TO FIX IT YET
+            /if(bookings.length != 0);
             {
                 concertHall.transferArray(bookings);
             }*/
