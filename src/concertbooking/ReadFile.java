@@ -6,7 +6,7 @@ import java.io.IOException;
 
 /**
  *
- * @author Ciaran Jordan B00663523 Patrick Crossan B0066
+ * @author Ciaran Jordan B00663523 Patrick Crossan B00663255
  */
 public class ReadFile 
 {
