@@ -30,7 +30,7 @@ public class ConcertUI extends javax.swing.JFrame
     private int goldCounter = 0;
     private int silverCounter = 0;
     private int bronzeCounter = 0;
-    FileAccess fileAccessor = new FileAccess();
+    WriteFile fileAccessor = new WriteFile();
     
     public ConcertUI()
     {
