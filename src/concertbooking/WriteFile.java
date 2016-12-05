@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -55,25 +56,37 @@ public class WriteFile
         printer.close();
     }
     
-    public void continueTransfer(String[] readArray)
+    public void searchForSeat(String searchedName)
     {
-        //define a new array + allocate space
-        bookings = new String[readArray.length];
- 
-        //copy values
-        for(int i =0;i < readArray.length;i++)
+        for(int i=0; i<=bookings.length; i++)
         {
-            bookings[i] = readArray[i];
             if(bookings[i] != null)
             {
-                arraySize++;
+                if(bookings[i].contains(searchedName))
+                {
+                    JOptionPane.showMessageDialog(null,searchedName+" has booked "+bookings[i].substring(bookings[i].lastIndexOf(' ')+ 1));
+                }
             }
         }
     }
     
-    public void printToBookings(String name,String seat)
+    public void searchForCustomer(String searchedSeat)
     {
-        bookings[arraySize] = name+" "+seat;
+        for(int i=0; i<bookings.length; i++)
+        {
+            if(bookings[i] != null)
+            {
+                if(bookings[i].contains(searchedSeat))
+                {
+                    JOptionPane.showMessageDialog(null,searchedSeat+" has been booked by "+bookings[i].substring(0,bookings[i].indexOf(" ", bookings[i].indexOf(" ",bookings[i].indexOf(" ",bookings[i].indexOf(" ",bookings[i].indexOf(" ",bookings[i].indexOf(" ")+1)+1)+1)+1)+1)));
+                }
+            }
+        }
+    }
+    
+    public void printToBookings(String name,String backstagePass,String freeProgramme,String seat)
+    {
+        bookings[arraySize] = name+" "+backstagePass+" "+freeProgramme+" "+seat;
         try 
         {
             FileWriter myWriter = new FileWriter("Bookings.txt",true);
