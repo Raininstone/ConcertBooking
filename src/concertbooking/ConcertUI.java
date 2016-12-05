@@ -768,7 +768,7 @@ public class ConcertUI extends javax.swing.JFrame
                 {
                     JOptionPane.showMessageDialog (null, "You've got a backstage pass", "Backstage Pass", JOptionPane.INFORMATION_MESSAGE);
                 }
-                storeCustomerDetails();
+                storeCustomerDetails("Backstage Pass","No Programme");
                 goldCounter++;
                 source.setBackground(Color.RED);
             }
@@ -779,14 +779,14 @@ public class ConcertUI extends javax.swing.JFrame
     {
         @Override
         public void actionPerformed(ActionEvent e)
-        {          
+        {
             JButton source = (JButton)e.getSource();
             if(source.getBackground() == Color.RED)
             {
                 source.setBackground(Color.decode("#C0C0C0"));
             }else
             {
-                storeCustomerDetails();
+                storeCustomerDetails("No BackstagePass","Free Programme");
                 JOptionPane.showMessageDialog (null, "You are Entitled to a free programme", "Free Programme", JOptionPane.INFORMATION_MESSAGE);
                 silverCounter++;
                 source.setBackground(Color.RED);
@@ -795,18 +795,24 @@ public class ConcertUI extends javax.swing.JFrame
     }
     
     private class BronzeButtonAction implements ActionListener
-    {
+    {  
         @Override
         public void actionPerformed(ActionEvent e)
         {           
             JButton source = (JButton)e.getSource();
             if(source.getBackground() == Color.RED)
             {
-                JOptionPane.showMessageDialog (null, "Bronze seats cannot be unbooked", "Already Booked", JOptionPane.INFORMATION_MESSAGE);
-                //source.setBackground(Color.decode("#D2691E"));
+                if(totalPrice == 0)
+                {
+                    source.setBackground(Color.decode("#D2691E"));   
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog (null, "Bronze seats cannot be unbooked", "Already Booked", JOptionPane.INFORMATION_MESSAGE);   
+                }
             }else
             {
-                storeCustomerDetails();
+                storeCustomerDetails("No BackstagePass","No Programme");
                 bronzeCounter++;
                 source.setBackground(Color.RED);
             }
@@ -844,7 +850,8 @@ public class ConcertUI extends javax.swing.JFrame
         @Override
         public void actionPerformed(ActionEvent ae)
         {
-            //Doesn't do anything yet
+            String searchedSeat = JOptionPane.showInputDialog("Please enter a seat to search for");
+            fileAccessor.searchForCustomer(searchedSeat);
         }
     }
     
@@ -855,7 +862,8 @@ public class ConcertUI extends javax.swing.JFrame
         @Override
         public void actionPerformed(ActionEvent ae)
         {
-            //Doesn't do anything yet
+            String searchedName = JOptionPane.showInputDialog("Please Enter a name to search for");
+            fileAccessor.searchForSeat(searchedName);
         }
     }
 
@@ -874,7 +882,7 @@ public class ConcertUI extends javax.swing.JFrame
         
     }
     
-    private void storeCustomerDetails()
+    private void storeCustomerDetails(String backstagePass,String freeProgramme)
     {
         String name = JOptionPane.showInputDialog("Please enter your name");
         while(name.length() > 30)
@@ -882,18 +890,6 @@ public class ConcertUI extends javax.swing.JFrame
             name = JOptionPane.showInputDialog("Please enter a name with less than 30 characters");
         }
         String seat = JOptionPane.showInputDialog("Please enter your Seat");
-        fileAccessor.printToBookings(name,seat);
-    }
-    
-    public void transferArray(String[] readArray)
-    {
-        //define a new array + allocate space
-        String[] newArray = new String[readArray.length];
- 
-        //copy values
-        for(int i =0;i < readArray.length;i++)
-            newArray[i] = readArray[i];
-        
-        fileAccessor.continueTransfer(newArray);
+        fileAccessor.printToBookings(name,backstagePass,freeProgramme,seat);
     }
 }
