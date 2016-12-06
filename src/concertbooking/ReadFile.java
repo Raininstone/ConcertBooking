@@ -10,8 +10,6 @@ import java.io.IOException;
  */
 public abstract class ReadFile 
 {
-    /*Adding temp change to get this to commit
-        */
     protected final String path;
     
     //Constructor containg pathway for file being accessed
@@ -21,8 +19,11 @@ public abstract class ReadFile
     }
 
     //Abstract class for opening files
-    abstract String[] openFile() 
+    abstract void openFile() 
         throws IOException;
+    
+    //Abstract method for finding booked seats
+    abstract int[][] findBookedSeats();
     
     //Count the number of data items in the file
     protected int numLines()
