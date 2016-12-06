@@ -10,27 +10,76 @@ import java.io.IOException;
  */
 public class ReadConcert extends ReadFile
 {
-    /*Adding temp change to get this to commit
-        */
+    private String currentConcert;
+    private String[] parts;
+    
+    //Constructor setting up file path
     public ReadConcert(String filePath)
     {
         super(filePath);
     }
     
-    /* Reads from concert file and populates an array
-    of size 1
-    */
+    //Opens concert file and stores the current concert
     @Override
-    public String[] openFile()
+    public void openFile()
             throws IOException
     {
         FileReader reader = new FileReader(path);
         BufferedReader textReader = new BufferedReader(reader);
         
-        String[] currentConcert = new String[1];
-        currentConcert[0] = textReader.readLine();
+        currentConcert = textReader.readLine();
         
         textReader.close();
-        return currentConcert;
+    }
+    
+    //Is a concert currently on
+    public boolean isConcertOn()
+    {
+        boolean concertExists;
+        if(currentConcert == null)
+        {
+            concertExists = false;
+        }else
+        {
+            concertExists = true;
+        }
+        
+        return concertExists;
+    }
+    
+    //Return price of gold seats
+    public double getGoldPrice()
+    {
+        parts = currentConcert.split(" ");
+        double goldPrice = Double.parseDouble(parts[parts.length - 3]);
+        
+        return goldPrice;
+    }
+    
+    //Return price of silver seats
+    public double getSilverPrice()
+    {
+        parts = currentConcert.split(" ");
+        double silverPrice = Double.parseDouble(parts[parts.length - 2]);
+        
+        return silverPrice;
+    }
+    
+    //Return price of bronze seats
+    public double getBronzePrice()
+    {
+        parts = currentConcert.split(" ");
+        double bronzePrice = Double.parseDouble(parts[parts.length - 1]);
+        
+        return bronzePrice;
+    }
+    
+    //Generic method to appease abstract class
+    @Override
+    public int[][] findBookedSeats()
+    {
+        int[][] seatPositions = new int[1][1];
+        
+        return seatPositions;
     }
 }

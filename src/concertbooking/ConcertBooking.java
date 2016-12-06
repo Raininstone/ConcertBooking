@@ -8,7 +8,7 @@ import java.io.IOException;
  */
 public class ConcertBooking
 {
-    static String[] bookings = new String[90];
+    private static ReadFile accessFile;
     
     /**
      * @param args the command line arguments
@@ -17,50 +17,40 @@ public class ConcertBooking
     public static void main(String[] args)
             throws IOException
     {
-        /*Adding temp change to get this to commit
+        /*
+        Creates the UI, sets the title, stops program when closes,
+        sizes the frame to match what it contains, and makes it visible.
         */
-        try
-        {
-            ReadFile bookingsFile = new ReadBookings("Bookings.txt");
-            String [] currentBookings = bookingsFile.openFile();
-            for(int i = 0; i < currentBookings.length; i++)
-            {
-                bookings[i] = currentBookings[i];
-            }
-            /*THIS WILL CAUSE AN EXCEPTION ERROR WHEN ADDING A BOOKING NOT SURE
-            * HOW TO FIX IT YET
-            /if(bookings.length != 0);
-            {
-                concertHall.transferArray(bookings);
-            }*/
-            
-            /* Just used this for testing to check data was being read in
-            properly.
-            */
-            /*for(int i = 0; i < bookings.length; i++)
-            {
-                System.out.println(bookings[i]);
-            }*/
-        }catch(IOException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        
-        try
-        {
-            ReadFile concertFile = new ReadConcert("ConcertDetails.txt");
-            String[] concertDetails = concertFile.openFile();
-            //Just testing again
-            //System.out.println(concertDetails[0]);
-        }catch(IOException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        
         ConcertUI concertHall = new ConcertUI();
-        concertHall.setTitle("Button Array Test");
+        concertHall.setTitle("Concert Seat Booking");
         concertHall.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         concertHall.pack();
         concertHall.setVisible(true);
+        
+        //Checks if a concert already exists
+        try
+        {
+            ReadFile concertFile = new ReadConcert("ConcertDetails.txt");
+            concertFile.openFile();
+        }catch(IOException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        
+        //Checks if any seats are already booked.
+        try
+        {
+            accessFile = new ReadBookings("Bookings.txt");
+            accessFile.openFile();
+            
+            int[][] seatPositions = accessFile.findBookedSeats();
+            for(int i = 0; i < seatPositions.length; i++)
+            {
+                concertHall.isBooked(seatPositions[i][0], seatPositions[i][1]);
+            }
+        }catch(IOException e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 }
